@@ -37,6 +37,7 @@ const deleteTable = (id) => {
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
                                 <tr>
+                                    <th scope="col" class="px-6 py-3">Id</th>
                                     <th scope="col" class="px-6 py-3">Name Table</th>
                                     <th scope="col" class="px-6 py-3">Description</th>
                                     <th scope="col" class="px-6 py-3">Status</th>
@@ -45,6 +46,7 @@ const deleteTable = (id) => {
                             </thead>
                             <tbody>
                                 <tr v-for="item in models.data" :key="item.id" class="bg-white border-b border-gray-200">
+                                    <td class="px-6 py-4">{{ item.id }}</td>
                                     <td class="px-6 py-4">{{ item.name }}</td>
                                     <td class="px-6 py-4">{{ item.desc }}</td>
                                     <td class="px-6 py-4">{{ item.status }}</td>

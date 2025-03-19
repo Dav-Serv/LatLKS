@@ -45,6 +45,7 @@ const formatPrice = (price) => {
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
                                 <tr>
+                                    <th scope="col" class="px-6 py-3">Id</th>
                                     <th scope="col" class="px-6 py-3">Image</th>
                                     <th scope="col" class="px-6 py-3">Name Product</th>
                                     <th scope="col" class="px-6 py-3">Category</th>
@@ -56,6 +57,7 @@ const formatPrice = (price) => {
                             </thead>
                             <tbody>
                                 <tr v-for="item in models.data" :key="item.id" class="bg-white border-b border-gray-200">
+                                    <td class="px-6 py-4">{{ item.id }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         <img v-if="item.image" :src="`/storage/${item.image}`" alt="product-image" width="100">
                                     </td>
