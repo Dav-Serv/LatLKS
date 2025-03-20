@@ -10,10 +10,19 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function dashboard()
+    {
+        $models = Product::with('category')->get();
+        dd($models);
+        // return Inertia::render('Components/Dashboard', [
+        //     'models' => $models
+        // ]);
+    }
+
     public function index()
     {
         $models = Product::with('category')->paginate(5);
-        return Inertia::render('Product/Index', [
+        return Inertia::render('Product/Index','Components/Dashboard', [
             'models' => $models
         ]);
     }

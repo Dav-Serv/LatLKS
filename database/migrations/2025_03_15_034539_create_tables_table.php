@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150);
-            $table->text('desc');
+            $table->string('location');
+            $table->integer('limit');
+            $table->integer('price');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
@@ -28,3 +30,4 @@ return new class extends Migration
         Schema::dropIfExists('tables');
     }
 };
+?>

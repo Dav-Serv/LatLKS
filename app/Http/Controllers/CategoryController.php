@@ -32,7 +32,7 @@ class CategoryController extends Controller
             'name'      => 'required',
         ]);
 
-        Category::create($request->only(['name']));
+        Category::create($request->all());
 
         return redirect()->route('categories.index');
     }
@@ -53,7 +53,7 @@ class CategoryController extends Controller
             'name'      => 'required',
         ]);
 
-        $category->update($request->only(['name']));
+        $category->update($request->all());
 
         return redirect()->route('categories.index');
     }

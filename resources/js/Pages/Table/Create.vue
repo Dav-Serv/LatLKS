@@ -15,7 +15,9 @@ const props = defineProps({
 const form = useForm({
     _method: props.form_type,
     name: props.model?.name,
-    desc: props.model?.desc,
+    location: props.model?.location,
+    limit: props.model?.limit,
+    price: props.model?.price,
     status: props.model?.status ?? 'active',
 });
 
@@ -52,14 +54,36 @@ const createTable = () => {
                         </div>
 
                         <div class="mb-4">
-                            <label class="block font-medium text-sm text-gray-700">Description</label>
+                            <label class="block font-medium text-sm text-gray-700">Location</label>
                             <textarea
-                                id="desc"
-                                v-model="form.desc"
+                                id="location"
+                                v-model="form.location"
                                 type="text"
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
                             />
-                            <p class="text-sm text-red-600" v-if="form.errors.desc" v-html="form.errors.desc" />
+                            <p class="text-sm text-red-600" v-if="form.errors.location" v-html="form.errors.location" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block font-medium text-sm text-gray-700">Limit</label>
+                            <input
+                                id="limit"
+                                v-model="form.limit"
+                                type="number"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
+                            />
+                            <p class="text-sm text-red-600" v-if="form.errors.limit" v-html="form.errors.limit" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block font-medium text-sm text-gray-700">Price</label>
+                            <input
+                                id="price"
+                                v-model="form.price"
+                                type="number"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
+                            />
+                            <p class="text-sm text-red-600" v-if="form.errors.price" v-html="form.errors.price" />
                         </div>
 
                         <div class="mb-4">

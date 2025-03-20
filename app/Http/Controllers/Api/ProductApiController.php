@@ -40,7 +40,7 @@ class ProductApiController extends Controller
             $imagePath = $request->file('image')->store('products', 'public');
         }
 
-        $$models = Product::create([
+        $models = Product::create([
             'image'         => $imagePath,
             'name'          => $request->name,
             'category_id'   => $request->category_id,
@@ -52,7 +52,7 @@ class ProductApiController extends Controller
         return new PostResource(true, 'Insert Data Product', $models);
     }
 
-    public function update(Request $request, $product){
+    public function update(Request $request,Product $product){
         $validator = Validator::make($request->all(), [
             'image'            => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'name'             => 'required',
@@ -66,7 +66,7 @@ class ProductApiController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $models = Product::find($product);
+        // $models = Product::find($product);
 
         $imagePath = $product->image;
         if ($request->hasFile('image')) {
@@ -74,28 +74,36 @@ class ProductApiController extends Controller
                 Storage::delete($imagePath);
             }
             $imagePath = $request->file('image')->store('products', 'public');
+
+            $product->update([
+                'image'         => $imagePath,
+                'name'          => $request->name,
+                'category_id'   => $request->category_id,
+                'desc'          => $request->desc,
+                'stock'         => $request->stock,
+                'price'         => $request->price,
+            ]);
+        }else{
+            $product->update([
+                'name'          => $request->name,
+                'category_id'   => $request->category_id,
+                'desc'          => $request->desc,
+                'stock'         => $request->stock,
+                'price'         => $request->price,
+            ]);
         }
 
-        $models = $product->update([
-            'image'         => $imagePath,
-            'name'          => $request->name,
-            'category_id'   => $request->category_id,
-            'desc'          => $request->desc,
-            'stock'         => $request->stock,
-            'price'         => $request->price,
-        ]);
-
-        // $models = Product::update($request->all());
-        return new PostResource(true, 'Update Data Product', $models);
+        // $models->update($request->all());
+        return new PostResource(true, 'Update Data Product', $product);
     }
 
-    public function destroy($product){
+    public function destroy(Product $product){
         if ($product->image) {
             Storage::delete($product->image);
         }
 
-        $models = $product->delete();
+        $product->delete();
         
-        return new PostResource(true, 'Update Data Product', $models);
+        return new PostResource(true, 'Update Data Product', $product);
     }
 }

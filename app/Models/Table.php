@@ -8,7 +8,15 @@ class table extends Model
 {
     protected $fillable =[
         'name',
-        'desc',
+        'location',
+        'limit',
+        'price',
         'status',
     ];
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
+?>

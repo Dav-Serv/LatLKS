@@ -21,6 +21,14 @@ const deleteTable = (id) => {
         });
     }
 }
+
+// Fungsi untuk memformat harga
+const formatPrice = (price) => {
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR', // Format IDR (Rupiah)
+    }).format(price);
+};
 </script>
 
 <template>
@@ -39,7 +47,9 @@ const deleteTable = (id) => {
                                 <tr>
                                     <th scope="col" class="px-6 py-3">Id</th>
                                     <th scope="col" class="px-6 py-3">Name Table</th>
-                                    <th scope="col" class="px-6 py-3">Description</th>
+                                    <th scope="col" class="px-6 py-3">Location</th>
+                                    <th scope="col" class="px-6 py-3">Limit</th>
+                                    <th scope="col" class="px-6 py-3">Price</th>
                                     <th scope="col" class="px-6 py-3">Status</th>
                                     <th scope="col" class="px-6 py-3" width="15%">Opsi</th>
                                 </tr>
@@ -48,7 +58,9 @@ const deleteTable = (id) => {
                                 <tr v-for="item in models.data" :key="item.id" class="bg-white border-b border-gray-200">
                                     <td class="px-6 py-4">{{ item.id }}</td>
                                     <td class="px-6 py-4">{{ item.name }}</td>
-                                    <td class="px-6 py-4">{{ item.desc }}</td>
+                                    <td class="px-6 py-4">{{ item.location }}</td>
+                                    <td class="px-6 py-4">{{ item.limit }}</td>
+                                    <td class="px-6 py-4">{{ formatPrice(item.price) }}</td>
                                     <td class="px-6 py-4">{{ item.status }}</td>
                                     <td class="px-6 py-4">
                                         <ButtonLink :href="route('tables.edit', item.id)" color="blue">Edit</ButtonLink>&nbsp;

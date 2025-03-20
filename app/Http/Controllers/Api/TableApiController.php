@@ -23,7 +23,9 @@ class TableApiController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
-            'desc'     => 'required',
+            'location'     => 'required',
+            'limit'     => 'required',
+            'price'     => 'required',
             'status'   => 'required',
         ]);
 
@@ -38,7 +40,9 @@ class TableApiController extends Controller
     public function update(Request $request, $table){
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
-            'desc'     => 'required',
+            'location'     => 'required',
+            'limit'     => 'required',
+            'price'     => 'required',
             'status'   => 'required',
         ]);
 

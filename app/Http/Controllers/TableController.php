@@ -30,11 +30,13 @@ class TableController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:150',
-            'desc'      => 'required',
+            'location'      => 'required',
+            'limit'      => 'required',
+            'price'      => 'required',
             'status'    => 'required|in:active,inactive',
         ]);
 
-        Table::create($request->only(['name', 'desc', 'status']));
+        Table::create($request->all());
 
         return redirect()->route('tables.index');
     }
@@ -53,11 +55,13 @@ class TableController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:150',
-            'desc'      => 'required',
+            'location'      => 'required',
+            'limit'      => 'required',
+            'price'      => 'required',
             'status'    => 'required|in:active,inactive',
         ]);
 
-        $table->update($request->only(['name', 'desc', 'status']));
+        $table->update($request->all());
 
         return redirect()->route('tables.index');
     }
