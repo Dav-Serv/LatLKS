@@ -4,10 +4,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-use App\Http\Controllers\{
-    TableController,
-    CategoryController,
-    ProductController
+use App\Http\Controllers\Admin\ {
+    TableAdminController,
+    CategoryAdminController,
+    ProductAdminController,
+    UserAdminController,
 };
 
 Route::get('/', function () {
@@ -28,7 +29,8 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('tables', TableController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('tables', TableAdminController::class);
+    Route::resource('categories', CategoryAdminController::class);
+    Route::resource('products', ProductAdminController::class);
+    Route::resource('user', UserAdminController::class);
 });

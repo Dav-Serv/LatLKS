@@ -14,6 +14,7 @@ class Reservation extends Model
         'telephone',
         'email',
         'date',
+        'payment_id',
         'dp',
     ];
 
@@ -23,6 +24,10 @@ class Reservation extends Model
 
     public function table() : BelongsTo {
         return $this->belongsTo(Table::class, 'table_id', );
+    }
+
+    public function payment() : BelongsTo {
+        return $this->belongsTo(Payment::class, 'payment_id', );
     }
 }
 

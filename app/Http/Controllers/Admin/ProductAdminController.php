@@ -1,28 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class ProductAdminController extends Controller
 {
-    public function dashboard()
-    {
-        $models = Product::with('category')->get();
-        dd($models);
-        // return Inertia::render('Components/Dashboard', [
-        //     'models' => $models
-        // ]);
-    }
-
     public function index()
     {
         $models = Product::with('category')->paginate(5);
-        return Inertia::render('Product/Index','Components/Dashboard', [
+        return Inertia::render('Product/Index', [
             'models' => $models
         ]);
     }

@@ -19,10 +19,12 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('email');
             $table->dateTime('date');
+            $table->unsignedBigInteger('payment_id');
             $table->integer('dp');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('table_id')->references('id')->on('tables');
+            $table->foreign('payment_id')->references('id')->on('payments');
         });
     }
 

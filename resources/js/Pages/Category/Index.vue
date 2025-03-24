@@ -24,7 +24,7 @@ const deleteCategory = (id) => {
 </script>
 
 <template>
-    <AppLayout title="Table">
+    <AppLayout title="Category">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Category</h2>
         </template>

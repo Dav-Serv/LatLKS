@@ -4,14 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class table extends Model
+class Payment extends Model
 {
-    protected $fillable =[
-        'name',
-        'location',
-        'limit',
-        'price',
-        'status',
+    protected $fillable = [
+        'name'
     ];
 
     public function reservation()
@@ -19,4 +15,3 @@ class table extends Model
         return $this->hasMany(Reservation::class);
     }
 }
-?>
