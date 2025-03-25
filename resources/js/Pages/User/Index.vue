@@ -51,7 +51,7 @@ const deleteUser = (id) => {
                                     <td class="px-6 py-4">{{ item.name }}</td>
                                     <td class="px-6 py-4">{{ item.email }}</td>
                                     <td class="px-6 py-4">{{ item.level }}</td>
-                                    <td class="px-6 py-4">{{ item.password }}</td>
+                                    <td class="px-6 py-4 break-all text-xs">{{ item.password }}</td>
                                     <td class="px-6 py-4">
                                         <ButtonLink :href="route('user.edit', item.id)" color="blue">Edit</ButtonLink>&nbsp;
                                         <ButtonLink @click="deleteUser(item.id)" color="red">Delete</ButtonLink>

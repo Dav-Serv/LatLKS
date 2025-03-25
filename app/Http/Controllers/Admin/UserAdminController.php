@@ -11,6 +11,7 @@ class UserAdminController extends Controller
 {
     public function index(){
         $models = User::paginate(5);
+        $models->getCollection()->makeVisible('password');
         return Inertia::render('User/Index', [
             'models' => $models
         ]);
@@ -28,13 +29,12 @@ class UserAdminController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name'      => 'required|max:150',
-        //     'location'      => 'required',
-        //     'limit'      => 'required',
-        //     'price'      => 'required',
-        //     'status'    => 'required|in:active,inactive',
-        // ]);
+        $request->validate([
+            'nama'      => 'required',
+            'email'     => 'required|email',
+            'level'     => 'required',
+            'password'  => 'required|min:8',
+        ]);
 
         User::create($request->all());
 
@@ -53,13 +53,12 @@ class UserAdminController extends Controller
 
     public function update(Request $request, User $user)
     {
-        // $request->validate([
-        //     'name'      => 'required|max:150',
-        //     'location'      => 'required',
-        //     'limit'      => 'required',
-        //     'price'      => 'required',
-        //     'status'    => 'required|in:active,inactive',
-        // ]);
+        $request->validate([
+            'nama'      => 'required',
+            'email'     => 'required|email',
+            'level'     => 'required',
+            'password'  => 'required|min:8',
+        ]);
 
         $user->update($request->all());
 
