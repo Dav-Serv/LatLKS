@@ -22,15 +22,16 @@ class TableApiController extends Controller
 
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'location'     => 'required',
-            'limit'     => 'required',
-            'price'     => 'required',
-            'status'   => 'required',
+            'name'      => 'required|string|max:255',
+            'location'  => 'required|string|max:255',
+            'limit'     => 'required|numeric',
+            'price'     => 'required|numeric',
+            'status'    => 'required|in:active,inactive',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // return response()->json($validator->errors(), 422);
+            return new PostResource(false, $validator->errors()->toArray(), []);
         }
 
         $models = Table::create($request->all());
@@ -39,15 +40,16 @@ class TableApiController extends Controller
 
     public function update(Request $request, $table){
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'location'     => 'required',
-            'limit'     => 'required',
-            'price'     => 'required',
-            'status'   => 'required',
+            'name'      => 'required|string|max:255',
+            'location'  => 'required|string|max:255',
+            'limit'     => 'required|numeric',
+            'price'     => 'required|numeric',
+            'status'    => 'required|in:active,inactive',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // return response()->json($validator->errors(), 422);
+            return new PostResource(false, $validator->errors()->toArray(), []);
         }
 
         $models = Table::find($table)->update($request->all());

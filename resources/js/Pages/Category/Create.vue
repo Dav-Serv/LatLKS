@@ -35,7 +35,8 @@ const createCategory = () => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form @submit.prevent="createCategory" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <ButtonLink :href="route('categories.index')">Back</ButtonLink>
+                <form @submit.prevent="createCategory" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 mt-4">
                     <div class="mb-7">
                         <div class="mb-4">
                             <label class="block font-medium text-sm text-gray-700">Name</label>

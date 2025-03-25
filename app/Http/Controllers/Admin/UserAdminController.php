@@ -30,7 +30,7 @@ class UserAdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'      => 'required',
+            'name'      => 'required',
             'email'     => 'required|email',
             'level'     => 'required',
             'password'  => 'required|min:8',
@@ -54,10 +54,10 @@ class UserAdminController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'nama'      => 'required',
+            'name'      => 'required',
             'email'     => 'required|email',
             'level'     => 'required',
-            'password'  => 'required|min:8',
+            'password'  => 'nullable',
         ]);
 
         $user->update($request->all());

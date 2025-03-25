@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ {
     ProductAdminController,
     UserAdminController,
 };
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,9 +26,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/{product}', [DashboardController::class, 'show'])->name('dashboard.show');
 
     Route::resource('tables', TableAdminController::class);
     Route::resource('categories', CategoryAdminController::class);

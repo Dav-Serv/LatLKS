@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -48,21 +48,25 @@ const logout = () => {
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
-                                <NavLink :href="route('user.index')" :active="route().current('user.*')">
-                                    User
-                                </NavLink>
-                                <NavLink :href="route('tables.index')" :active="route().current('tables.*')">
-                                    Table
-                                </NavLink>
-                                <NavLink :href="route('categories.index')" :active="route().current('categories.*')">
-                                    Category
-                                </NavLink>
-                                <NavLink :href="route('products.index')" :active="route().current('products.*')">
-                                    Product
-                                </NavLink>
+                                <template v-if="usePage().props?.level == 'user' || usePage().props?.level == 'admin' ">
+                                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                        Dashboard
+                                    </NavLink>
+                                </template>
+                                <template v-if="usePage().props?.level == 'admin' ">
+                                    <NavLink :href="route('user.index')" :active="route().current('user.*')">
+                                        User
+                                    </NavLink>
+                                    <NavLink :href="route('tables.index')" :active="route().current('tables.*')">
+                                        Table
+                                    </NavLink>
+                                    <NavLink :href="route('categories.index')" :active="route().current('categories.*')">
+                                        Category
+                                    </NavLink>
+                                    <NavLink :href="route('products.index')" :active="route().current('products.*')">
+                                        Product
+                                    </NavLink>
+                                </template>
                             </div>
                         </div>
 

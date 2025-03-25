@@ -32,7 +32,7 @@ const deleteUser = (id) => {
         <div class="py-12">
             <div class="container mx-auto sm:px-6 lg:px-8">
                 <ButtonLink :href="route('user.create')">Add User</ButtonLink>
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mt-7">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mt-4">
                     <div class="relative overflow-x-auto">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">

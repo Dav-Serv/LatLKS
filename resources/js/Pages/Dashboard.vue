@@ -1,6 +1,17 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Dashboard from '@/Components/Dashboard.vue';
+import Ds from '@/Components/Dashboard.vue';
+
+const props = defineProps({
+    name:{
+        type: String,
+        default: null
+    },
+    models:{
+        type: Object,
+        default: {}
+    }
+});
 </script>
 
 <template>
@@ -14,7 +25,7 @@ import Dashboard from '@/Components/Dashboard.vue';
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Dashboard />
+                    <Ds :name="name" :models="models" />
                 </div>
             </div>
         </div>

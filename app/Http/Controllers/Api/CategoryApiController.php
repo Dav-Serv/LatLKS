@@ -23,11 +23,12 @@ class CategoryApiController extends Controller
 
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
+            'name'     => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // return response()->json($validator->errors(), 422);
+            return new PostResource(false, $validator->errors()->toArray(), []);
         }
 
         $models = Category::create($request->all());
@@ -36,11 +37,12 @@ class CategoryApiController extends Controller
 
     public function update(Request $request, $category){
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
+            'name'     => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // return response()->json($validator->errors(), 422);
+            return new PostResource(false, $validator->errors()->toArray(), []);
         }
 
         $models = Category::find($category)->update($request->all());

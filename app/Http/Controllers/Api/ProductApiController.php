@@ -24,15 +24,16 @@ class ProductApiController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'image'            => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'name'             => 'required',
+            'name'             => 'required|string|max:255',
             'category_id'      => 'required|exists:categories,id',
-            'desc'             => 'required',
-            'stock'            => 'required',
-            'price'            => 'required',
+            'desc'             => 'required|string|max:255',
+            'stock'            => 'required|numeric',
+            'price'            => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // return response()->json($validator->errors(), 422);
+            return new PostResource(false, $validator->errors()->toArray(), []);
         }
 
         // Menyimpan gambar jika ada
@@ -55,15 +56,16 @@ class ProductApiController extends Controller
     public function update(Request $request,Product $product){
         $validator = Validator::make($request->all(), [
             'image'            => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'name'             => 'required',
+            'name'             => 'required|string|max:255',
             'category_id'      => 'required|exists:categories,id',
-            'desc'             => 'required',
-            'stock'            => 'required',
-            'price'            => 'required',
+            'desc'             => 'required|string|max:255',
+            'stock'            => 'required|numeric',
+            'price'            => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            // return response()->json($validator->errors(), 422);
+            return new PostResource(false, $validator->errors()->toArray(), []);
         }
 
         // $models = Product::find($product);

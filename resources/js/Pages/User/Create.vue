@@ -15,15 +15,14 @@ const props = defineProps({
 const form = useForm({
     _method: props.form_type,
     name: props.model?.name,
-    location: props.model?.location,
-    limit: props.model?.limit,
-    price: props.model?.price,
-    status: props.model?.status ?? 'active',
+    email: props.model?.email,
+    level: props.model?.level,
+    password: props.model?.password,
 });
 
-const createTable = () => {
+const createUser = () => {
     form.post(props.route_url, {
-        errorBag: 'createTable',
+        errorBag: 'createUser',
         preserveScroll: true,
         onSuccess: () => true,
     });
@@ -40,7 +39,8 @@ const createTable = () => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form @submit.prevent="createTable" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <ButtonLink :href="route('user.index')">Back</ButtonLink>
+                <form @submit.prevent="createUser" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 mt-4">
                     <div class="mb-7">
                         <div class="mb-4">
                             <label class="block font-medium text-sm text-gray-700">Name</label>
@@ -54,50 +54,40 @@ const createTable = () => {
                         </div>
 
                         <div class="mb-4">
-                            <label class="block font-medium text-sm text-gray-700">Location</label>
+                            <label class="block font-medium text-sm text-gray-700">Email</label>
                             <textarea
-                                id="location"
-                                v-model="form.location"
+                                id="email"
+                                v-model="form.email"
                                 type="text"
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
                             />
-                            <p class="text-sm text-red-600" v-if="form.errors.location" v-html="form.errors.location" />
+                            <p class="text-sm text-red-600" v-if="form.errors.email" v-html="form.errors.email" />
                         </div>
 
                         <div class="mb-4">
-                            <label class="block font-medium text-sm text-gray-700">Limit</label>
-                            <input
-                                id="limit"
-                                v-model="form.limit"
-                                type="number"
-                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
-                            />
-                            <p class="text-sm text-red-600" v-if="form.errors.limit" v-html="form.errors.limit" />
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block font-medium text-sm text-gray-700">Price</label>
-                            <input
-                                id="price"
-                                v-model="form.price"
-                                type="number"
-                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
-                            />
-                            <p class="text-sm text-red-600" v-if="form.errors.price" v-html="form.errors.price" />
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block font-medium text-sm text-gray-700">Status</label>
+                            <label class="block font-medium text-sm text-gray-700">Level</label>
                             <select
-                                id="status"
-                                v-model="form.status"
+                                id="level"
+                                v-model="form.level"
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
                             >
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
                             </select>
-                            <p class="text-sm text-red-600" v-if="form.errors.status" v-html="form.errors.status" />
+                            <p class="text-sm text-red-600" v-if="form.errors.level" v-html="form.errors.level" />
                         </div>
+
+                        <div class="mb-4">
+                            <label class="block font-medium text-sm text-gray-700">Password</label>
+                            <input
+                                id="password"
+                                v-model="form.password"
+                                type="number"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
+                            />
+                            <p class="text-sm text-red-600" v-if="form.errors.password" v-html="form.errors.password" />
+                        </div>
+
                     </div>
 
                     <div>

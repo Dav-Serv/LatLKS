@@ -45,7 +45,8 @@ const createProduct = () => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form @submit.prevent="createProduct" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6" enctype="multipart/form-data">
+                <ButtonLink :href="route('products.index')">Back</ButtonLink>
+                <form @submit.prevent="createProduct" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 mt-4" enctype="multipart/form-data">
                     <div class="mb-7">
                         <div class="mb-4">
                             <label class="block font-medium text-sm text-gray-700">Image</label>
