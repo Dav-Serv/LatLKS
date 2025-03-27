@@ -3,6 +3,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import ButtonLink from '@/Components/ButtonLink.vue';
 import Pagination from '@/Components/Pagination.vue';
+import Green from '@/Components/IndicatorGreen.vue';
+import Red from '@/Components/IndicatorRed.vue';
 
 const props = defineProps({
     models: {
@@ -61,7 +63,12 @@ const formatPrice = (price) => {
                                     <td class="px-6 py-4">{{ item.location }}</td>
                                     <td class="px-6 py-4">{{ item.limit }}</td>
                                     <td class="px-6 py-4">{{ formatPrice(item.price) }}</td>
-                                    <td class="px-6 py-4">{{ item.status }}</td>
+                                    <Green v-if="item.status == 'active'">
+                                        <td class="px-6 py-4">{{ item.status }}</td>
+                                    </Green>
+                                    <Red v-if="item.status == 'inactive'">
+                                        <td class="px-6 py-4">{{ item.status }}</td>
+                                    </Red>
                                     <td class="px-6 py-4">
                                         <ButtonLink :href="route('tables.edit', item.id)" color="blue">Edit</ButtonLink>&nbsp;
                                         <ButtonLink @click="deleteTable(item.id)" color="red">Delete</ButtonLink>

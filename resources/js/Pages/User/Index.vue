@@ -3,6 +3,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import ButtonLink from '@/Components/ButtonLink.vue';
 import Pagination from '@/Components/Pagination.vue';
+import Yellow from '@/Components/IndicatorYellow.vue';
+import Blue from '@/Components/IndicatorBlue.vue';
 
 const props = defineProps({
     models: {
@@ -41,7 +43,7 @@ const deleteUser = (id) => {
                                     <th scope="col" class="px-6 py-3">Name User</th>
                                     <th scope="col" class="px-6 py-3">Email</th>
                                     <th scope="col" class="px-6 py-3">Level</th>
-                                    <th scope="col" class="px-6 py-3">Password</th>
+                                    <th scope="col" class="px-6 py-3">Token</th>
                                     <th scope="col" class="px-6 py-3" width="15%">Opsi</th>
                                 </tr>
                             </thead>
@@ -50,8 +52,13 @@ const deleteUser = (id) => {
                                     <td class="px-6 py-4">{{ item.id }}</td>
                                     <td class="px-6 py-4">{{ item.name }}</td>
                                     <td class="px-6 py-4">{{ item.email }}</td>
-                                    <td class="px-6 py-4">{{ item.level }}</td>
-                                    <td class="px-6 py-4 break-all text-xs">{{ item.password }}</td>
+                                    <Yellow v-if="item.level == 'user'">
+                                        <td class="px-6 py-4">{{ item.level }}</td>
+                                    </Yellow>
+                                    <Blue v-if="item.level == 'admin'">
+                                        <td class="px-6 py-4">{{ item.level }}</td>
+                                    </Blue>
+                                    <td class="px-6 py-4">{{ item.token }}</td>
                                     <td class="px-6 py-4">
                                         <ButtonLink :href="route('user.edit', item.id)" color="blue">Edit</ButtonLink>&nbsp;
                                         <ButtonLink @click="deleteUser(item.id)" color="red">Delete</ButtonLink>

@@ -12,9 +12,11 @@ class DashboardController extends Controller
 {
     public function index(){
         $models = Product::all();
+        $level  = Auth::user()->level;
         return Inertia::render('Dashboard', [
             'name'      => Auth::user()->name,
-            'models'    => $models
+            'models'    => $models,
+            'level'     => $level,
         ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
@@ -109,3 +109,4 @@ class ProductApiController extends Controller
         return new PostResource(true, 'Update Data Product', $product);
     }
 }
+

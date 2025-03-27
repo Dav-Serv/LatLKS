@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import ButtonLink from '@/Components/ButtonLink.vue';
 
 defineProps({
     title: String,
@@ -65,6 +66,14 @@ const logout = () => {
                                     </NavLink>
                                     <NavLink :href="route('products.index')" :active="route().current('products.*')">
                                         Product
+                                    </NavLink>
+                                </template>
+                                <template v-if="usePage().props?.level == 'user' || usePage().props?.level == 'admin'">
+                                    <NavLink :href="route('products.index')" :active="route().current('reservations.*')">
+                                        <ButtonLink>Reservation</ButtonLink>
+                                    </NavLink>
+                                    <NavLink :href="route('products.index')" :active="route().current('menus.*')">
+                                        <ButtonLink>Menu</ButtonLink>
                                     </NavLink>
                                 </template>
                             </div>
